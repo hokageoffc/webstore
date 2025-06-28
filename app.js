@@ -40,7 +40,7 @@ app.post('/beli', async (req, res) => {
   if (!produk || produk.stok <= 0) return res.send('❌ Produk tidak tersedia.')
 
   try {
-    const qrisRes = await axios.get(\`\${process.env.QRIS_API_URL}?apikey=\${process.env.QRIS_API_KEY}&amount=\${produk.harga}&codeqr=\${process.env.QRIS_CODEQR}\`)
+    const qrisRes = await axios.get(`${process.env.QRIS_API_URL}?apikey=${process.env.QRIS_API_KEY}&amount=${produk.harga}&codeqr=${process.env.QRIS_CODEQR}`)
     const data = qrisRes.data
 
     if (!data.status) return res.send('❌ Gagal generate QR Code')
