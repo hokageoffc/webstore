@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hokage Store</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+  <header class="bg-white shadow p-4 text-center">
+    <h1 class="text-3xl font-bold text-indigo-600">🛒 Hokage Store</h1>
+    <p class="text-gray-500">Pilih produk dan bayar via QRIS</p>
+  </header>
+
+  <main class="max-w-6xl mx-auto py-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+    <% products.forEach(p => { %>
+      <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <img src="<%= p.foto %>" class="w-full h-48 object-cover" />
+        <div class="p-4 space-y-2">
+          <h2 class="text-xl font-semibold text-gray-800"><%= p.nama %></h2>
+          <p class="text-gray-700">💵 Rp<%= p.harga.toLocaleString() %></p>
+          <p class="text-sm text-gray-500">📦 Stok: <%= p.stok %></p>
+          <form method="GET" action="/beli" class="pt-2">
+            <input type="hidden" name="id" value="<%= p._id %>">
+            <button class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded shadow">Beli Sekarang</button>
+          </form>
+        </div>
+      </div>
+    <% }) %>
+  </main>
+</body>
+</html>

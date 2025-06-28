@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login Admin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-200 flex items-center justify-center h-screen">
+  <form method="POST" action="/login" class="bg-white p-8 rounded-lg shadow-lg w-full max-w-sm">
+    <h2 class="text-2xl font-bold text-indigo-600 mb-4 text-center">🔐 Login Admin</h2>
+    <% if (error) { %>
+      <p class="text-red-500 text-sm mb-3 text-center"><%= error %></p>
+    <% } %>
+    <input type="password" name="password" placeholder="Password Admin"
+      class="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+    <button type="submit"
+      class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-lg font-semibold">
+      Login Sekarang
+    </button>
+  </form>
+</body>
+</html>
