@@ -21,7 +21,6 @@ mongoose.connect(process.env.MONGO_URI, {
 }).then(() => console.log('✅ MongoDB Connected'))
   .catch(err => console.log('❌ MongoDB Error:', err))
 
-// Routes
 app.get('/', async (req, res) => {
   const products = await Product.find()
   res.render('index', { products })
@@ -49,17 +48,17 @@ app.post('/beli', async (req, res) => {
     const idTransaksi = data.result.idtransaksi
     const expired = new Date(data.result.expired).toLocaleString('id-ID')
 
-    res.send(\`
+    res.send(`
       <div style="text-align:center; font-family: sans-serif">
         <h2 style="font-size: 1.5rem; font-weight: bold; color: #4f46e5;">✅ Silakan Lakukan Pembayaran</h2>
-        <p>Jumlah: <b>Rp \${produk.harga.toLocaleString()}</b></p>
-        <img src="\${qrUrl}" width="250" style="margin: 20px auto; border-radius: 10px;" />
-        <p><b>ID Transaksi:</b> \${idTransaksi}</p>
-        <p><b>Expired:</b> \${expired}</p>
-        <p>Email Anda: <b>\${email}</b></p>
+        <p>Jumlah: <b>Rp ${produk.harga.toLocaleString()}</b></p>
+        <img src="${qrUrl}" width="250" style="margin: 20px auto; border-radius: 10px;" />
+        <p><b>ID Transaksi:</b> ${idTransaksi}</p>
+        <p><b>Expired:</b> ${expired}</p>
+        <p>Email Anda: <b>${email}</b></p>
         <p style="margin-top:15px;">📌 Setelah transfer, admin akan mengirim produk ke email Anda.</p>
       </div>
-    \`)
+    `)
   } catch (err) {
     console.error(err)
     res.send('❌ Gagal menghubungi server QRIS.')
